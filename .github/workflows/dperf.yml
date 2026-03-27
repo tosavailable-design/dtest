@@ -6,4 +6,5 @@ jobs:
     steps:
       - run: |
           wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz
-          ls
+          tar -xvzf ookla-speedtest-1.2.0-linux-aarch64.tgz
+          ./speedtest --accept-license --accept-gdpr
