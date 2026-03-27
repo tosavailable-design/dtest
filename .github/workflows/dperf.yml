@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
+          ethtool enP20558s1
           git clone https://github.com/baidu/dperf.git
           cd dperf
           sudo apt update
