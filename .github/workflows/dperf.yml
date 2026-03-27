@@ -7,5 +7,5 @@ jobs:
       - run: |
           git clone https://github.com/baidu/dperf.git
           cd dperf
-          sudo apt install -y libdpdk-dev
+          sudo apt install -y libdpdk-dev libsystemd-dev
           make
