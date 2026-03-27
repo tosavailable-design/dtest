@@ -5,7 +5,11 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          lsmod | grep mlx5
+          dpkg -l | grep -iE "rdma|ibverbs|mellanox|ofed"
+          lsmod | grep -iE "mlx5|rdma|ib_"
+          ofed_info -s
+          rdma link
+          ibv_devinfo
           git clone https://github.com/baidu/dperf.git
           cd dperf
           make
