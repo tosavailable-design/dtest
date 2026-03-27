@@ -4,4 +4,6 @@ jobs:
   dperf:
     runs-on: ubuntu-24.04-arm
     steps:
-      - run: lscpu
+      - run: |
+          wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz
+          ls
