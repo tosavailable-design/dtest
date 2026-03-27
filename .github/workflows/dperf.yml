@@ -2,6 +2,6 @@ name: dperf
 on: workflow_dispatch
 jobs:
   dperf:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - run: lscpu
