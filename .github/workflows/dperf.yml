@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          ping gwbyte.sandboxol.com
+          ping 77.88.8.8
           grep . /sys/class/net/*/speed
           git clone https://github.com/baidu/dperf.git
           cd dperf
