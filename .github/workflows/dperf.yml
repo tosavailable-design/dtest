@@ -2,7 +2,7 @@ name: dperf
 on: workflow_dispatch
 jobs:
   dperf:
-    runs-on: ubuntu-22.04-arm
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Check
         run: |
