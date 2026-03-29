@@ -6,6 +6,7 @@ jobs:
     steps:
       - run: |
           uname -a
+          sudo reboot
           sudo apt update
           sudo apt update
           sudo apt install linux-tools-azure linux-cloud-tools-azure linux-tools-$(uname -r) linux-cloud-tools-$(uname -r) -y
