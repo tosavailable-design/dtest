@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          for i in $(seq $(nproc)); do md5sum /dev/zero >/dev/null 2>&1 & done; while true; do echo "=== CPU FREQ | $(date '+%H:%M:%S') ==="; sudo dmesg 2>/dev/null | grep -iE 'tsc.*mhz|detected.*mhz' | tail -n 1 | awk '{print "Kernel Boot: " $0}'; sudo dmidecode -t processor 2>/dev/null | grep -i 'Speed:' | head -n 1 | awk '{print "Hardware Table: " $0}'; awk '/[Bb]ogo[Mm][Ii][Pp][Ss]/ {print "Calculated (BogoMIPS/2): ~" $3/2 " MHz"; exit}' /proc/cpuinfo; echo ""; sleep 2; done
+          for i in $(seq $(nproc)); do md5sum /dev/zero >/dev/null 2>&1 & done; while true; do echo "=== LIVE SPEED METRIC | $(date '+%H:%M:%S') ==="; awk 'BEGIN { start = systime(); count = 0; while (systime() - start < 1) { for(i=0; i<10000; i++) {}; count++ }; printf "Current Effective Speed: %d (ops/sec)\n", count }'; echo ""; sleep 1; done
           git clone https://github.com/baidu/dperf.git
