@@ -6,3 +6,4 @@ jobs:
     steps:
       - run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+          apt-cache search '^gcc-[0-9]+$'
