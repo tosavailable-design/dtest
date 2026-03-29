@@ -7,3 +7,4 @@ jobs:
       - run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test
           apt-cache search '^gcc-[0-9]+$'
+          sudo apt install gcc-14 && gcc --version
