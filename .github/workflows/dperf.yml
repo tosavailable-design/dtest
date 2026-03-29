@@ -4,6 +4,4 @@ jobs:
   dperf:
     runs-on: ubuntu-24.04-arm
     steps:
-      - name: Check
-        run: |
-          lscpu
+      run: lscpu
