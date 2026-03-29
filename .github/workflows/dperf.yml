@@ -6,4 +6,5 @@ jobs:
     steps:
       - name: Check
         run: |
-          cat /proc/cpuinfo
+          sudo apt install fastfetch
+          fastfetch
