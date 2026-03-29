@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
+          uname -a
           sudo apt update
           sudo apt update
           sudo apt install linux-tools-azure linux-cloud-tools-azure linux-tools-$(uname -r) linux-cloud-tools-$(uname -r) -y
