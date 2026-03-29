@@ -7,9 +7,4 @@ jobs:
       - name: Check
         run: |
           sudo apt install sysbench -y
-          sysbench cpu --cpu-max-prime=20000 --time=60 --threads=1 run
-          uname -a
-          curl -s ipinfo.io
-          wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz
-          tar -xvzf ookla-speedtest-1.2.0-linux-aarch64.tgz
-          ./speedtest --accept-license --accept-gdpr
+          sysbench cpu --cpu-max-prime=20000 --time=60 --threads=$(nproc) run
