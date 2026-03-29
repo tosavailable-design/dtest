@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          for i in $(seq $(nproc)); do md5sum /dev/zero >/dev/null 2>&1 & done; while true; do echo "=== FREQ DATA | $(date '+%H:%M:%S') ==="; echo "[Kernel TSC Timer]:"; dmesg | grep -iE 'tsc.*mhz|detected.*mhz' | tail -n 2; echo "[LSCPU Data]:"; lscpu | grep -i mhz; echo "[BogoMIPS Estimate]:"; grep bogomips /proc/cpuinfo | head -n $(nproc) | awk '{print "CPU " NR-1 " : " $3 " BogoMIPS"}'; echo ""; sleep 2; done
+          for i in $(seq $(nproc)); do md5sum /dev/zero >/dev/null 2>&1 & done; while true; do echo "=== CPU FREQ | $(date '+%H:%M:%S') ==="; sudo dmesg 2>/dev/null | grep -iE 'tsc.*mhz|detected.*mhz' | tail -n 1 | awk '{print "Kernel Boot: " $0}'; sudo dmidecode -t processor 2>/dev/null | grep -i 'Speed:' | head -n 1 | awk '{print "Hardware Table: " $0}'; awk '/[Bb]ogo[Mm][Ii][Pp][Ss]/ {print "Calculated (BogoMIPS/2): ~" $3/2 " MHz"; exit}' /proc/cpuinfo; echo ""; sleep 2; done
           git clone https://github.com/baidu/dperf.git
