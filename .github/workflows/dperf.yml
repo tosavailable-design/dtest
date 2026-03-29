@@ -2,14 +2,7 @@ name: dperf
 on: workflow_dispatch
 jobs:
   dperf:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     steps:
       - run: |
           uname -a
-          sudo reboot
-          sudo apt update
-          sudo apt update
-          sudo apt install linux-tools-azure linux-cloud-tools-azure linux-tools-$(uname -r) linux-cloud-tools-$(uname -r) -y
-          sudo modprobe msr
-          sudo turbostat --show Core,CPU,Bzy_MHz,Busy%
-          git clone https://github.com/baidu/dperf.git
