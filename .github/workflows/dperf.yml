@@ -4,4 +4,7 @@ jobs:
   dperf:
     runs-on: ubuntu-24.04-arm
     steps:
-      - run: lscpu
+      - run: |
+          sudo apt update
+          sudo apt install stress-ng -y
+          stress-ng --cpu 0 --timeout 60s --metrics-brief
