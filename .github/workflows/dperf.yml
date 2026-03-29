@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          sudo apt-get install -y stress-ng >/dev/null 2>&1; stress-ng --cpu 0 >/dev/null 2>&1 & watch -n 1 -d "grep 'cpu MHz' /proc/cpuinfo | awk '{print \"Ядро\", NR-1, \":\", \$4, \"MHz\"}' | column -t"; killall stress-ng
+          for i in $(seq $(nproc)); do md5sum /dev/zero >/dev/null 2>&1 & done; while true; do echo "=== 100% LOAD | $(date '+%H:%M:%S') ==="; grep 'cpu MHz' /proc/cpuinfo | awk '{printf "CPU %02d : %8s MHz\n", NR-1, $4}'; echo ""; sleep 1; done
           git clone https://github.com/baidu/dperf.git
