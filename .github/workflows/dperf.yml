@@ -2,12 +2,12 @@ name: dperf
 on: workflow_dispatch
 jobs:
   dperf:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     steps:
       - name: Check
         run: |
           uname -a
           curl -s ipinfo.io
-          wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-aarch64.tgz
-          tar -xvzf ookla-speedtest-1.2.0-linux-aarch64.tgz
+          wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz
+          tar -xvzf ookla-speedtest-1.2.0-linux-x86_64.tgz
           ./speedtest --accept-license --accept-gdpr
