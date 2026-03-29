@@ -2,9 +2,12 @@ name: dperf
 on: workflow_dispatch
 jobs:
   dperf:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          sudo apt update
-          sudo apt install stress-ng -y
-          stress-ng --cpu 0 --timeout 60s --metrics-brief
+          sudo apt-get update
+          sudo apt-get install sysbench -y
+      - run: |
+          curl -sL yabs.sh | bash -s -- -i -n
+          sysbench cpu --cpu-max-prime=20000 run
+          top
