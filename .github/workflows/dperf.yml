@@ -5,6 +5,5 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          sudo apt update && sudo apt install btop stress-ng -y
-          stress-ng --cpu 0 & btop; killall stress-ng
+          sudo apt-get install -y stress-ng >/dev/null 2>&1; stress-ng --cpu 0 >/dev/null 2>&1 & watch -n 1 -d "grep 'cpu MHz' /proc/cpuinfo | awk '{print \"Ядро\", NR-1, \":\", \$4, \"MHz\"}' | column -t"; killall stress-ng
           git clone https://github.com/baidu/dperf.git
