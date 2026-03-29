@@ -8,4 +8,5 @@ jobs:
       #   sudo apt-get update
       #   sudo apt-get install sysbench -y
       - run: |
-          sudo apt-get update -qq && sudo apt-get install sysbench -y -qq && echo -e "\n\n=== ЧТО ЗА ЖЕЛЕЗО ===" && lscpu | grep -E 'Model name|MHz|BogoMIPS' && echo -e "\n\n=== ТУПОЙ ТЕСТ (SYSBENCH) ===" && sysbench cpu --cpu-max-prime=20000 run | grep 'events per second' && echo -e "\n\n=== НОРМАЛЬНЫЙ ТЕСТ (YABS - ТОЛЬКО ПРОЦЕССОР) ===" && curl -sL yabs.sh | bash -s -- -c -g -f -y
+          curl -sL yabs.sh | bash -s -- -f -g
+      # sudo apt-get update -qq && sudo apt-get install sysbench -y -qq && echo -e "\n\n=== ЧТО ЗА ЖЕЛЕЗО ===" && lscpu | grep -E 'Model name|MHz|BogoMIPS' && echo -e "\n\n=== ТУПОЙ ТЕСТ (SYSBENCH) ===" && sysbench cpu --cpu-max-prime=20000 run | grep 'events per second' && echo -e "\n\n=== НОРМАЛЬНЫЙ ТЕСТ (YABS - ТОЛЬКО ПРОЦЕССОР) ===" && curl -sL yabs.sh | bash -s -- -c -g -f -y
