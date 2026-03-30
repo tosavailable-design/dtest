@@ -21,7 +21,8 @@ jobs:
           cpu 0 1 2 3
           rss
           duration 1m
-          cps 1000000
+          cc 1200
+          cps 1200
           keepalive 1ms
           payload_size 1400
           port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
