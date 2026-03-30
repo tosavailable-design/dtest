@@ -23,7 +23,7 @@ jobs:
           duration 1m
           cps 250000
           port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
-          client $LOCAL_IP 255
+          client $LOCAL_IP 200
           server $TARGET_IP 1
           listen $TARGET_PORT 1
           EOF
