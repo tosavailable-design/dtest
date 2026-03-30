@@ -28,4 +28,7 @@ jobs:
           EOF
           echo "✅ Готово! Проверяем:"
           cat client.conf
+          sudo sysctl -w vm.nr_hugepages=1024
+          sudo mkdir -p /dev/hugepages
+          sudo mount -t hugetlbfs nodev /dev/hugepages
           sudo ./dperf -c client.conf
