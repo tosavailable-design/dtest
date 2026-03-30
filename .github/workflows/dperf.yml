@@ -22,6 +22,7 @@ jobs:
           listen $TARGET_PORT 1
           EOF
           echo "✅ Готово! Файл client.conf записан в текущей директории. Проверь его: cat client.conf"
+          cat client.conf
       - run: |
           git clone https://github.com/baidu/dperf.git
           cd dperf
