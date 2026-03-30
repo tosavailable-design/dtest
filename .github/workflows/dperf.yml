@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
+          eval $(ip route get 1.1.1.1 | awk '{print "iface="$5" gw="$3" ip="$7}'); pci=$(basename $(readlink /sys/class/net/$iface/device 2>/dev/null)); echo "port ${pci:-ОШИБКА_НЕТ_PCI} $ip $gw"
+      - run: |
           git clone https://github.com/baidu/dperf.git
           cd dperf
           sudo apt-get update
