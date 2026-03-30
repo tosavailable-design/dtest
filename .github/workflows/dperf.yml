@@ -20,10 +20,10 @@ jobs:
           protocol http
           cpu 0 1 2 3
           rss
-          duration 1m
-          cps 250000
+          duration 10m
+          cps 1000000
           port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
-          client $LOCAL_IP 20
+          client $LOCAL_IP 100
           server $TARGET_IP 1
           listen $TARGET_PORT 1
           EOF
