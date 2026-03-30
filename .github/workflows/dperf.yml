@@ -11,7 +11,7 @@ jobs:
           sudo apt-get install -y libdpdk-dev libsystemd-dev
           make
           cd build
-          TARGET_IP="147.75.202.235"; TARGET_PORT="22"; \
+          TARGET_IP="149.86.227.54"; TARGET_PORT="80"; \
           LOCAL_IP=$(ip route get $TARGET_IP | grep -oP 'src \K\S+'); \
           GW=$(ip -4 route get $TARGET_IP | grep -oP 'via \K\S+'); [ -z "$GW" ] && GW=$(ip -4 route show default | grep -oP 'via \K\S+' | head -n1); \
           PCI=$(ls /sys/bus/pci/drivers/mlx5_core/ 2>/dev/null | grep -E '^[0-9a-fA-F]{4}:' | head -n1); \[ -z "$PCI" ] && PCI=$(lspci -D 2>/dev/null | grep -i mellanox | awk '{print $1}' | head -n1); \
@@ -26,6 +26,7 @@ jobs:
           client $LOCAL_IP 100
           server $TARGET_IP 1
           listen $TARGET_PORT 1
+          http_host h1.dstat.love
           EOF
           echo "✅ Готово! Проверяем:"
           cat client.conf
