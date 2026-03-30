@@ -21,7 +21,6 @@ jobs:
           cpu 0 1 2 3
           duration 1m
           cps 100000
-          cc 1000000
           port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
           client $LOCAL_IP 1
           server $TARGET_IP 1
