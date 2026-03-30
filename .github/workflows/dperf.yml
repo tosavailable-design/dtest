@@ -5,7 +5,23 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
-          IFACE=$(ip route get 1.1.1.1 | grep -oP 'dev \K\S+'); IP=$(ip route get 1.1.1.1 | grep -oP 'src \K\S+'); GW=$(ip -4 route get 1.1.1.1 | grep -oP 'via \K\S+'); [ -z "$GW" ] && GW=$(ip -4 route show default | grep -oP 'via \K\S+' | head -n1); PCI=$(readlink /sys/class/net/$IFACE/device 2>/dev/null); PCI=${PCI##*/}; echo "port ${PCI:-ОШИБКА_НЕТ_PCI} $IP ${GW:-НЕТ_ШЛЮЗА}"
+          TARGET_IP="8.8.8.8"; TARGET_PORT="80"; \
+          IFACE=$(ip route get $TARGET_IP | grep -oP 'dev \K\S+'); \
+          LOCAL_IP=$(ip route get $TARGET_IP | grep -oP 'src \K\S+'); \
+          GW=$(ip -4 route get $TARGET_IP | grep -oP 'via \K\S+'); \[ -z "$GW" ] && GW=$(ip -4 route show default | grep -oP 'via \K\S+' | head -n1); \
+          PCI=$(readlink /sys/class/net/$IFACE/device 2>/dev/null); PCI=${PCI##*/}; \
+          cat <<EOF > client.conf
+          mode client
+          protocol http
+          cpu 0
+          duration 1m
+          cps 1000
+          port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
+          client $LOCAL_IP 1
+          server $TARGET_IP 1
+          listen $TARGET_PORT 1
+          EOF
+          echo "✅ Готово! Файл client.conf записан в текущей директории. Проверь его: cat client.conf"
       - run: |
           git clone https://github.com/baidu/dperf.git
           cd dperf
