@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - run: |
+          uname -a
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test
           apt-cache search '^gcc-[0-9]+$'
           sudo apt install gcc-15 && gcc --version
