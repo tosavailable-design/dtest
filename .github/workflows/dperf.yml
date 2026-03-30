@@ -19,6 +19,7 @@ jobs:
           mode client
           protocol http
           cpu 0 1 2 3
+          rss
           duration 1m
           cps 100000
           port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
