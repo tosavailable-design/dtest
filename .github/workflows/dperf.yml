@@ -18,9 +18,10 @@ jobs:
           cat <<EOF > client.conf
           mode client
           protocol http
-          cpu 0
+          cpu 0 1 2 3
           duration 1m
-          cps 1000
+          cps 100000
+          cc 1000000
           port ${PCI:-ОШИБКА_НЕТ_PCI} $LOCAL_IP ${GW:-НЕТ_ШЛЮЗА}
           client $LOCAL_IP 1
           server $TARGET_IP 1
@@ -28,7 +29,7 @@ jobs:
           EOF
           echo "✅ Готово! Проверяем:"
           cat client.conf
-          sudo sysctl -w vm.nr_hugepages=1024
+          sudo sysctl -w vm.nr_hugepages=5120
           sudo mkdir -p /dev/hugepages
           sudo mount -t hugetlbfs nodev /dev/hugepages
           sudo ./dperf -c client.conf
